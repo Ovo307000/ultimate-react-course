@@ -19,7 +19,7 @@ function App()
     {
         if (step > 1)
         {
-            setStep( step - 1 );
+            setStep( currentStep => currentStep - 1 );
         }
     }
 
@@ -27,15 +27,13 @@ function App()
     {
         if (step < messages.length)
         {
-            setStep( step + 1 );
+            setStep( currentStep => currentStep + 1 );
         }
     }
 
     function handleClose()
     {
-        setIsOpen( !isOpen );
-
-        console.log("State: ", isOpen);
+        setIsOpen( currentIsOpen => !currentIsOpen );
     }
 
     return <>
