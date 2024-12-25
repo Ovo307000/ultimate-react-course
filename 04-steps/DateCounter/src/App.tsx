@@ -1,35 +1,87 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App()
+{
+    const [step, setStep] = useState( 0 );
+    const [count, setCount] = useState( 0 );
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+    const date = new Date();
+
+    date.setDate( date.getDate() + count );
+
+
+    function incrementStep()
+    {
+        setStep( step => step + 1 );
+    }
+
+    function decrementStep()
+    {
+        if (step === 0)
+        {
+            return;
+        }
+
+        setStep( step => step - 1 );
+    }
+
+    function incrementCount()
+    {
+        setCount( count => count + step );
+    }
+
+    function decrementCount()
+    {
+        setCount( count => count - step );
+    }
+
+    function formatDateMessage()
+    {
+        if (count === 0)
+        {
+            return 'Today is ';
+        } else if (count > 0)
+        {
+            return `${ count } days In `;
+        } else
+        {
+            return `${ Math.abs( count ) } days Ago is `;
+        }
+    }
+
+    return <>
+        <div>
+            <button onClick = { incrementStep }>
+                <span>Step +</span>
+            </button>
+            <span>{ step }</span>
+            <button onClick = { decrementStep }>
+                <span>Step -</span>
+            </button>
+        </div>
+
+        <div>
+            <button onClick = { incrementCount }>
+                <span>Count +</span>
+            </button>
+            <span>{ count }</span>
+            <button onClick = { decrementCount }>
+                <span>Count -</span>
+            </button>
+        </div>
+
+        <span>{ formatDateMessage() }{ date.toDateString() }</span>
+
+        <hr/>
+
+        <small>
+            NOTE: The date is based on the current date + the COUNT
+
+            <br/>
+            Step: For each click, the step will be increased by 1. <br/>
+            Count: For each click, the count will be increased by the step.
+        </small>
+    </>;
 }
 
-export default App
