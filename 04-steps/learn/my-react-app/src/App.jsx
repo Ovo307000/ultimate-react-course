@@ -13,7 +13,7 @@ function App()
     }
 
     const [step, setStep] = useState( 1 );
-    const [isOpen, setIsOpen] = useState( true );
+    const [isVisible, setIsVisible] = useState( true );
 
     function handlePrevious()
     {
@@ -33,7 +33,7 @@ function App()
 
     function handleClose()
     {
-        setIsOpen( currentIsOpen => !currentIsOpen );
+        setIsVisible( currentIsOpen => !currentIsOpen );
     }
 
     return <>
@@ -43,7 +43,7 @@ function App()
         >
             &times;
         </button>
-        { isOpen && <div className = "steps">
+        { isVisible && <div className = "steps">
             <div className = "numbers">
                 <span className = { step >= 1 ? 'active' : '' }>1</span>
                 <span className = { step >= 2 ? 'active' : '' }>2</span>
