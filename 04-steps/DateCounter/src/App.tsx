@@ -33,6 +33,11 @@ export default function App()
 
     function decrementCount()
     {
+        if (count === 0)
+        {
+            return;
+        }
+
         setCount( count => count - step );
     }
 
@@ -66,6 +71,8 @@ export default function App()
                 <span>Count +</span>
             </button>
             <span>{ count }</span>
+
+            {/* disabled if step is 0 */}
             <button onClick = { decrementCount }>
                 <span>Count -</span>
             </button>
