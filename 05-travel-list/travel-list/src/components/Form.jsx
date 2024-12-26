@@ -1,6 +1,10 @@
+import {useState} from "react";
+
 export default function Form()
 {
     const optionLength = 20;
+    const [description, setDescription] = useState( "" );
+    const [quantity, setQuantity] = useState( 1 );
 
     function mapArrayToOptions()
     {
@@ -11,6 +15,22 @@ export default function Form()
     function handleSubmit( event )
     {
         event.preventDefault();
+
+        if (description === "")
+        {
+            return;
+        }
+
+        setDescription( () => event.target.value );
+
+        const newItem = {
+            id    : Date.now(),
+            description,
+            quantity,
+            packed: false
+        };
+        console.log( newItem );
+        setDescription( () => "" );
     }
 
     return <>
@@ -20,13 +40,18 @@ export default function Form()
         >
             <h3>What do you need for your trip</h3>
 
-            <select>
+            <select
+                value = { quantity }
+                onChange = { event => setQuantity( () => Number( event.target.value ) ) }
+            >
                 { mapArrayToOptions() }
             </select>
 
             <input
                 type = "text"
                 placeholder = "item name"
+                value = { description }
+                onChange = { event => setDescription( () => event.target.value ) }
             />
 
             <button
