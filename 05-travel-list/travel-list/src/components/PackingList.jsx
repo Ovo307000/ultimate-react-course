@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Item      from "./Item";
 
-export default function PackingList( { items } )
+export default function PackingList( { items, onDeleteItem } )
 {
     return <>
         <div className = "list">
@@ -9,6 +9,7 @@ export default function PackingList( { items } )
                 { items.map( item => <Item
                     key = { item.id }
                     item = { item }
+                    onDeleteItem = { () => onDeleteItem( item.id ) }
                 /> ) }
             </ul>
         </div>
@@ -17,4 +18,5 @@ export default function PackingList( { items } )
 
 PackingList.propTypes = {
     items: PropTypes.array.isRequired,
+    onDeleteItem: PropTypes.func.isRequired
 };
