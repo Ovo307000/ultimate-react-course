@@ -4,7 +4,8 @@ export default function Button( {
                                     onClick,
                                     text,
                                     textColor,
-                                    backgroundColor
+                                    backgroundColor,
+                                    emoji
                                 } )
 {
     return <>
@@ -15,7 +16,7 @@ export default function Button( {
                 backgroundColor
             } }
         >
-            { text }
+            { emoji } { text }
         </button>
     </>;
 }
@@ -24,5 +25,6 @@ Button.propTypes = {
     onClick        : PropTypes.func.isRequired,
     text           : PropTypes.string.isRequired,
     textColor      : PropTypes.string,
-    backgroundColor: PropTypes.string
+    backgroundColor: PropTypes.string,
+    emoji          : PropTypes.string
 };

@@ -61,6 +61,7 @@ export default function App()
                     textColor = { buttonStyle.color }
                     backgroundColor = { buttonStyle.backgroundColor }
                     onClick = { handlePrevious }
+                    emoji={ "⬅️" }
                 >
                 </Button>
                 <Button
@@ -68,6 +69,7 @@ export default function App()
                     textColor = { buttonStyle.color }
                     backgroundColor = { buttonStyle.backgroundColor }
                     onClick = { handleNext }
+                    emoji={ "➡️" }
                 >
                 </Button>
             </div>
