@@ -1,5 +1,6 @@
-import {useState} from "react";
-import Button     from "./components/button/Button.jsx";
+import {useState}  from "react";
+import Button      from "./components/button/Button.jsx";
+import StepMessage from "./components/Text/StepMessage.jsx";
 
 export default function App()
 {
@@ -51,9 +52,16 @@ export default function App()
                 <span className = { step >= 3 ? 'active' : '' }>3</span>
             </div>
 
-            <p className = "message">
+
+            <StepMessage
+                className = { "message" }
+                currentStep = { step }
+            >
                 { taskDescriptions[step - 1] }
-            </p>
+                <Button onClick = { () => alert( ` Learn more about ${ taskDescriptions[step - 1] }` ) }>
+                    Learn
+                </Button>
+            </StepMessage>
 
             <div className = "buttons">
                 <Button
