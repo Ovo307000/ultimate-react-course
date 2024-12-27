@@ -3,7 +3,7 @@ import Button     from "./components/button/Button.jsx";
 
 export default function App()
 {
-    const messages = [
+    const taskDescriptions = [
         "Learn React ⚛️", "Apply for jobs 💼", "Invest your new income 🤑",
     ];
 
@@ -16,7 +16,7 @@ export default function App()
     const [ step, setStep ] = useState( 1 );
     const [ isVisible, setIsVisible ] = useState( true );
 
-    function handlePrevious()
+    function moveBackward()
     {
         if (step > 1)
         {
@@ -24,15 +24,15 @@ export default function App()
         }
     }
 
-    function handleNext()
+    function moveToNextStep()
     {
-        if (step < messages.length)
+        if (step < taskDescriptions.length)
         {
             setStep( currentStep => currentStep + 1 );
         }
     }
 
-    function handleClose()
+    function toggleVisibility()
     {
         setIsVisible( currentIsOpen => !currentIsOpen );
     }
@@ -40,7 +40,7 @@ export default function App()
     return <>
         <button
             className = "close"
-            onClick = { () => handleClose() }
+            onClick = { () => toggleVisibility() }
         >
             &times;
         </button>
@@ -52,7 +52,7 @@ export default function App()
             </div>
 
             <p className = "message">
-                { messages[step - 1] }
+                { taskDescriptions[step - 1] }
             </p>
 
             <div className = "buttons">
@@ -60,7 +60,7 @@ export default function App()
                     text = "Previous"
                     textColor = { buttonStyle.color }
                     backgroundColor = { buttonStyle.backgroundColor }
-                    onClick = { handlePrevious }
+                    onClick = { moveBackward }
                     emoji={ "⬅️" }
                 >
                 </Button>
@@ -68,7 +68,7 @@ export default function App()
                     text = "Next"
                     textColor = { buttonStyle.color }
                     backgroundColor = { buttonStyle.backgroundColor }
-                    onClick = { handleNext }
+                    onClick = { moveToNextStep }
                     emoji={ "➡️" }
                 >
                 </Button>
