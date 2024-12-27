@@ -9,10 +9,15 @@ export default function App()
 {
     const [items, setItems] = useState( initialItems );
 
+    function handleAddItems( newItem )
+    {
+        setItems( items => [...items, newItem] )
+    }
+
     return <>
         <div className = "app">
             <Logo/>
-            <Form/>
+            <Form onAddItems = { handleAddItems } />
             <PackingList
                 items = { items }
             />
