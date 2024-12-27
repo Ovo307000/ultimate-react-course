@@ -2,10 +2,9 @@ import PropTypes from "prop-types";
 
 export default function Button( {
                                     onClick,
-                                    text,
                                     textColor,
                                     backgroundColor,
-                                    emoji
+                                    children
                                 } )
 {
     return <>
@@ -16,15 +15,14 @@ export default function Button( {
                 backgroundColor
             } }
         >
-            { emoji } { text }
+            { children }
         </button>
     </>;
 }
 
 Button.propTypes = {
     onClick        : PropTypes.func.isRequired,
-    text           : PropTypes.string.isRequired,
+    children       : PropTypes.node.isRequired,
     textColor      : PropTypes.string,
     backgroundColor: PropTypes.string,
-    emoji          : PropTypes.string
 };

@@ -57,20 +57,22 @@ export default function App()
 
             <div className = "buttons">
                 <Button
-                    text = "Previous"
                     textColor = { buttonStyle.color }
                     backgroundColor = { buttonStyle.backgroundColor }
                     onClick = { moveBackward }
-                    emoji={ "⬅️" }
                 >
+                    <span>
+                        👈 Previous
+                    </span>
                 </Button>
                 <Button
-                    text = "Next"
                     textColor = { buttonStyle.color }
                     backgroundColor = { buttonStyle.backgroundColor }
                     onClick = { moveToNextStep }
-                    emoji={ "➡️" }
                 >
+                    <span>
+                        Next 👉
+                    </span>
                 </Button>
             </div>
         </div> }
