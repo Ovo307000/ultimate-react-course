@@ -1,33 +1,95 @@
-import {useState}     from "react";
-import Form           from "./components/Form.jsx";
-import Logo           from "./components/Logo.jsx";
-import PackingList    from "./components/PackingList.jsx";
-import Stats          from "./components/Stats.jsx";
-import {initialItems} from "./data/initialItems.js";
+import {useEffect, useReducer, useState} from "react";
+import Confetti                          from "./components/Confetti/Confetti";
+import Form                              from "./components/Form/Form";
+import List                              from "./components/List/List";
+import Logo                              from "./components/Logo/Logo";
+import Stats                             from "./components/Stats/Stats";
 
+// State management
+import {ITEM_ACTION_TYPES}               from "./constants/actionTypes";
+import {initialItemsState, itemsReducer} from "./reducers/itemsReducer";
+
+/**
+ * 主应用组件
+ * 管理应用程序的状态和组件组合
+ * 使用 useReducer 进行状态管理
+ */
 export default function App()
 {
-    const [items, setItems] = useState( initialItems );
+    const [ items, dispatch ] = useReducer(
+        itemsReducer,
+        initialItemsState
+    );
+    const [ showConfetti, setShowConfetti ] = useState( false );
 
-    function handleAddItems( newItem )
+    // 检查是否所有物品都已打包
+    useEffect(
+        () =>
+        {
+            if (items.length > 0 && items.every( item => item.packed ))
+            {
+                setShowConfetti( true );
+            } else
+            {
+                setShowConfetti( false );
+            }
+        },
+        [ items ]
+    );
+
+    function handleAddItem( item )
     {
-        setItems( items => [...items, newItem] )
+        dispatch( {
+            type   : ITEM_ACTION_TYPES.ADD_ITEM,
+            payload: item
+        } );
     }
 
-    function  handleDeleteItem( id )
+    function handleDeleteItem( id )
     {
-        setItems( items => items.filter( item => item.id !== id ) )
+        dispatch( {
+            type   : ITEM_ACTION_TYPES.DELETE_ITEM,
+            payload: id
+        } );
     }
 
-    return <>
-        <div className = "app">
+    function handleToggleItem( id )
+    {
+        dispatch( {
+            type   : ITEM_ACTION_TYPES.TOGGLE_ITEM,
+            payload: id
+        } );
+    }
+
+    function handleEditItem( id, updates )
+    {
+        dispatch( {
+            type   : ITEM_ACTION_TYPES.EDIT_ITEM,
+            payload: {
+                id,
+                updates
+            },
+        } );
+    }
+
+    function handleClearList()
+    {
+        dispatch( { type: ITEM_ACTION_TYPES.CLEAR_LIST } );
+    }
+
+    return (
+        <div className = "min-h-screen bg-dark no-scrollbar">
+            <Confetti isActive = { showConfetti }/>
             <Logo/>
-            <Form onAddItems = { handleAddItems } />
-            <PackingList
+            <Form onAddItem = { handleAddItem }/>
+            <List
                 items = { items }
                 onDeleteItem = { handleDeleteItem }
+                onToggleItem = { handleToggleItem }
+                onEditItem = { handleEditItem }
+                onClearList = { handleClearList }
             />
-            <Stats/>
+            <Stats items = { items }/>
         </div>
-    </>;
+    );
 }
