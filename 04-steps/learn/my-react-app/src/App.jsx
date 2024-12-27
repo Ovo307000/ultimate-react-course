@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function App()
+export default function App()
 {
     const messages = [
         "Learn React ⚛️", "Apply for jobs 💼", "Invest your new income 🤑",
@@ -12,8 +12,8 @@ function App()
         userSelect     : 'none'
     }
 
-    const [step, setStep] = useState( 1 );
-    const [isVisible, setIsVisible] = useState( true );
+    const [ step, setStep ] = useState( 1 );
+    const [ isVisible, setIsVisible ] = useState( true );
 
     function handlePrevious()
     {
@@ -71,5 +71,3 @@ function App()
         </div> }
     </>
 }
-
-export default App
