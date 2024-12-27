@@ -1,4 +1,5 @@
 import {useState} from "react";
+import Button     from "./components/button/Button.jsx";
 
 export default function App()
 {
@@ -55,18 +56,20 @@ export default function App()
             </p>
 
             <div className = "buttons">
-                <button
-                    style = { buttonStyle }
+                <Button
+                    text = "Previous"
+                    textColor = { buttonStyle.color }
+                    backgroundColor = { buttonStyle.backgroundColor }
                     onClick = { handlePrevious }
                 >
-                    Previous
-                </button>
-                <button
-                    style = { buttonStyle }
+                </Button>
+                <Button
+                    text = "Next"
+                    textColor = { buttonStyle.color }
+                    backgroundColor = { buttonStyle.backgroundColor }
                     onClick = { handleNext }
                 >
-                    Next
-                </button>
+                </Button>
             </div>
         </div> }
     </>
