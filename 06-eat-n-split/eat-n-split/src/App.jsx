@@ -18,6 +18,10 @@ export default function App ()
     function handleAddFriend ( newFriend )
     {
         setFriends ( prevFriends => [ ...prevFriends, newFriend ] );
+
+        // 如果大佬想要在添加之后关闭表单，可以取消下面的注释！
+        // 但是这是测试代码，不是最终代码，所以我注释掉了喵！
+        // setShowAddFriend ( false );
     }
 
 
