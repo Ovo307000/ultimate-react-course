@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Button    from "./ui/Button.jsx";
 
 export default function Friend ( { friend } )
 {
@@ -29,7 +30,7 @@ export default function Friend ( { friend } )
 
                 { displayBalance () }
 
-                <button className={ "button" }>Select</button>
+                <Button>Select</Button>
             </li>
         </>;
     }
