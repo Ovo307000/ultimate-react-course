@@ -8,18 +8,27 @@ import initialFriends from "./data/friendData.js";
 export default function App ()
 {
     const [ showAddFriend, setShowAddFriend ] = useState ( true );
+    const [ friends, setFriends ] = useState ( initialFriends );
 
     function toggleAddFriend ()
     {
         setShowAddFriend ( prevShowAddFriend => !prevShowAddFriend );
     }
 
+    function handleAddFriend ( newFriend )
+    {
+        setFriends ( prevFriends => [ ...prevFriends, newFriend ] );
+    }
+
 
     return <>
         <div className = "app">
             <div className = "sidebar">
-                <FriendList friendList = { initialFriends } />
-                <AddFriendForm showAddFriend = { showAddFriend } />
+                <FriendList friendList = { friends } />
+                <AddFriendForm
+                    showAddFriend = { showAddFriend }
+                    handleAddFriend = { handleAddFriend }
+                />
 
                 <Button onClick = { toggleAddFriend }>{ showAddFriend ? "Close" : "Add friend" }</Button>
             </div>

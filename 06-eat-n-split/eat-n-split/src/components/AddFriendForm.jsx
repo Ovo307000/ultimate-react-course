@@ -2,23 +2,28 @@ import PropTypes    from "prop-types";
 import { useState } from "react";
 import Button       from "./ui/Button.jsx";
 
-export default function AddFriendForm ( { showAddFriend } )
+const defaultImage = "https://i.pravatar.cc/48";
+
+export default function AddFriendForm ( { showAddFriend, handleAddFriend } )
 {
     const [ name, setName ] = useState ( "" );
-    const [ image, setImage ] = useState ( "https://i.pravatar.cc/48" );
+    const [ image, setImage ] = useState ( defaultImage );
 
     function handleSubmit ( formEvent )
     {
+        formEvent.preventDefault ();
+
         if (!name || !image)
         {
             return;
         }
 
-        formEvent.preventDefault ();
-
         const newFriend = generateRandomFriend ( name );
-
+        handleAddFriend ( newFriend );
         console.log ( newFriend );
+
+        setName ( "" );
+        setImage ( defaultImage );
     }
 
     function generateRandomFriend ( name )
@@ -51,11 +56,11 @@ export default function AddFriendForm ( { showAddFriend } )
                  value = { image }
              />
 
-             <Button>Add</Button>
+             <Button type = "submit">Add</Button>
          </form> }
     </>;
 }
 
 AddFriendForm.propTypes = {
-    showAddFriend: PropTypes.bool
+    showAddFriend: PropTypes.bool, handleAddFriend: PropTypes.func
 };
