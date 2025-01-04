@@ -1,16 +1,21 @@
-import Button from "./ui/Button.jsx";
+import PropTypes from "prop-types";
+import Button    from "./ui/Button.jsx";
 
-export default function AddFriendForm ()
+export default function AddFriendForm ( { showAddFriend } )
 {
     return <>
-        <form className = { "form-add-friend" }>
-            <label>👫 Friend name</label>
-            <input type = "text" />
+        { showAddFriend && <form className = { "form-add-friend" }>
+             <label>👫 Friend name</label>
+             <input type = "text" />
 
-            <label>📸 Image URL</label>
-            <input type = "text" />
+             <label>📸 Image URL</label>
+             <input type = "text" />
 
-            <Button>Add</Button>
-        </form>
+             <Button>Add</Button>
+         </form> }
     </>;
 }
+
+AddFriendForm.propTypes = {
+    showAddFriend: PropTypes.bool
+};
