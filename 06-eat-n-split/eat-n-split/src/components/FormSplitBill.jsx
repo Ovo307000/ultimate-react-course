@@ -22,8 +22,12 @@ export default function FormSplitBill ( { showAddFriend, currentFriend } )
                 <option value = { "friend" }>Friend</option>
             </select>
 
-            <Button>Add</Button>
-        </form>
+            <Button
+                type = "submit"
+            >
+                Split bill
+            </Button>
+        </form> }
     </>;
 }
 
