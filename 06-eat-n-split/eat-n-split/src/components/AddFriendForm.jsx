@@ -42,22 +42,22 @@ export default function AddFriendForm ( { showAddFriend, handleAddFriend } )
             className = { "form-add-friend" }
             onSubmit = { handleSubmit }
         >
-             <label>👫 Friend name</label>
-             <input
-                 type = "text"
-                 onChange = { event => setName ( event.target.value ) }
-                 value = { name }
-             />
+            <label>👫 Friend name</label>
+            <input
+                type = "text"
+                onChange = { event => setName ( event.target.value ) }
+                value = { name }
+            />
 
-             <label>📸 Image URL</label>
-             <input
-                 type = "text"
-                 onChange = { event => setImage ( event.target.value ) }
-                 value = { image }
-             />
+            <label>📸 Image URL</label>
+            <input
+                type = "text"
+                onChange = { event => setImage ( event.target.value ) }
+                value = { image }
+            />
 
-             <Button type = "submit">Add</Button>
-         </form> }
+            <Button type = "submit">Add</Button>
+        </form> }
     </>;
 }
 
