@@ -1,11 +1,12 @@
-import Button from "./ui/Button.jsx";
+import PropTypes    from "prop-types";
+import { useState } from "react";
+import Button       from "./ui/Button.jsx";
 
-export default function FormSplitBill ()
+export default function FormSplitBill ( { showAddFriend, currentFriend } )
 {
     return <>
-        <form className = "form-split-bill">
-            <h2>Split a bill with your friends</h2>
-
+        { showAddFriend && <form className = "form-split-bill">
+            <h2>Split a bill with { currentFriend.name }</h2>
             <label>💰 Bill value</label>
             <input type = "text" />
 
@@ -25,3 +26,12 @@ export default function FormSplitBill ()
         </form>
     </>;
 }
+
+FormSplitBill.propTypes = {
+    showAddFriend: PropTypes.bool.isRequired, currentFriend: PropTypes.shape ( {
+        id     : PropTypes.number.isRequired,
+        name   : PropTypes.string.isRequired,
+        image  : PropTypes.string.isRequired,
+        balance: PropTypes.number.isRequired
+    } ).isRequired
+};
