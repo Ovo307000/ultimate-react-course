@@ -16,6 +16,22 @@ export default function App ()
         setShowAddFriend ( prevShowAddFriend => !prevShowAddFriend );
     }
 
+    function handleSplitBill ( value )
+    {
+        setFriends ( prevFriends => prevFriends.map ( friend =>
+        {
+            if ( friend.id === selectedFriend )
+            {
+                return { ...friend, balance: friend.balance + value };
+            }
+
+            return friend;
+        } ) );
+
+        setSelectedFriend ( null );
+    }
+
+
     function handleAddFriend ( newFriend )
     {
         setFriends ( prevFriends => [ ...prevFriends, newFriend ] );
@@ -51,6 +67,7 @@ export default function App ()
             { selectedFriend && <FormSplitBill
                 showAddFriend = { showAddFriend }
                 currentFriend = { friends.find ( friend => friend.id === selectedFriend ) }
+                onSplitBill = { handleSplitBill }
             /> }
         </div>
     </>;
