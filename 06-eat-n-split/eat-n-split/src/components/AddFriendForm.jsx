@@ -13,7 +13,7 @@ export default function AddFriendForm ( { showAddFriend, handleAddFriend } )
     {
         formEvent.preventDefault ();
 
-        if (!name || !image)
+        if ( !name || !image )
         {
             return;
         }

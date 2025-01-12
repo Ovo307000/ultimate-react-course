@@ -7,7 +7,7 @@ export default function Friend ( { friend, selectFriend, onSelection } )
     {
         const displayBalance = () =>
         {
-            if (friend.balance > 0)
+            if ( friend.balance > 0 )
             {
                 return <>
                     <p className = { "red" }>
@@ -16,7 +16,7 @@ export default function Friend ( { friend, selectFriend, onSelection } )
                 </>;
             }
 
-            if (friend.balance < 0)
+            if ( friend.balance < 0 )
             {
                 return <>
                     <p className = { "green" }>
