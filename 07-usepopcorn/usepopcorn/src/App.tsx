@@ -3,13 +3,13 @@ import { Movie } from "./types/Movie";
 import { WatchedMovie } from "./types/WatchedMovie";
 import { tempMovieData } from "./data/movieData";
 import { tempWatchedData } from "./data/watchedMovieData";
+import Navbar from "./components/Navbar";
 
 function average(arr: number[]): number {
   return arr.reduce((acc, cur, _, arr) => acc + cur / arr.length, 0);
 }
 
 export default function App() {
-  const [query, setQuery] = useState("");
   const [movies] = useState<Movie[]>(tempMovieData);
   const [watched] = useState<WatchedMovie[]>(tempWatchedData);
   const [isOpen1, setIsOpen1] = useState(true);
@@ -19,26 +19,11 @@ export default function App() {
   const avgUserRating = average(watched.map(movie => movie.userRating));
   const avgRuntime = average(watched.map(movie => movie.runtime));
 
+  // components
+
   return (
     <>
-      <nav className="nav-bar">
-        <div className="logo">
-          <span role="img">🍿</span>
-          <h1>usePopcorn</h1>
-        </div>
-        <input
-          className="search"
-          type="text"
-          placeholder="Search movies..."
-          value={query}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setQuery(e.target.value)
-          }
-        />
-        <p className="num-results">
-          Found <strong>{movies.length}</strong> results
-        </p>
-      </nav>
+      <Navbar movies={movies} />
 
       <main className="main">
         <div className="box">
