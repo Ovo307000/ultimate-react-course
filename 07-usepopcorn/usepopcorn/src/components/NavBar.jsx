@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Logo      from "./ui/Logo";
 import SearchBar from "./ui/SearchBar";
+import SearchResult from "./ui/SearchResult";
 
 /**
  *
@@ -13,9 +14,7 @@ export default function NavBar ( { movies } )
         <nav className = "nav-bar">
             <Logo />
             <SearchBar />
-            <p className = "num-results">
-                Found <strong>{ movies.length }</strong> results
-            </p>
+            <SearchResult />
         </nav>
     </>;
 }
