@@ -12,18 +12,18 @@ function average(arr: number[]): number {
 
 export default function App(): React.ReactNode {
   const [movies] = useState<Movie[]>(tempMovieData);
-  const [watched] = useState<WatchedMovie[]>(tempWatchedData);
+  const [watchedMovies] = useState<WatchedMovie[]>(tempWatchedData);
 
-  const avgImdbRating = average(watched.map(movie => movie.imdbRating));
-  const avgUserRating = average(watched.map(movie => movie.userRating));
-  const avgRuntime = average(watched.map(movie => movie.runtime));
+  const avgImdbRating = average(watchedMovies.map(movie => movie.imdbRating));
+  const avgUserRating = average(watchedMovies.map(movie => movie.userRating));
+  const avgRuntime = average(watchedMovies.map(movie => movie.runtime));
 
   return (
     <>
       <Navbar movies={movies} />
       <Main
         movies={movies}
-        watched={watched}
+        watched={watchedMovies}
         avgImdbRating={avgImdbRating}
         avgUserRating={avgUserRating}
         avgRuntime={avgRuntime}
