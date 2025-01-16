@@ -5,22 +5,20 @@ import SearchResult from "./ui/SearchResult";
 
 /**
  *
- * @param { movies } movies array of movies
- * @param { isWatchedMoviesOpen } isWatchedMoviesOpen boolean
- * @param { setIsWatchedMoviesOpen } setIsWatchedMoviesOpen function
+ * @param { countMovies } countMovies number of movies
  * @returns { JSX.Element } JSX element
  */
-export default function NavBar ()
+export default function NavBar ( { countMovies } )
 {
     return <>
         <nav className = "nav-bar">
             <Logo />
             <SearchBar />
-            <SearchResult />
+            <SearchResult countMovies = { countMovies } />
         </nav>
     </>;
 }
 
 NavBar.propTypes = {
-    movies: PropTypes.array.isRequired
+    countMovies: PropTypes.number.isRequired
 };

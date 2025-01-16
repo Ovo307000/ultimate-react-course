@@ -28,7 +28,7 @@ export default function App ()
     const avgRuntime = calculateAverage ( watched.map ( movie => movie.runtime ) );
 
     return <>
-        <NavBar movies = { movies } />
+        <NavBar countMovies = { movies.length } />
 
         <Main
             movies = { movies }

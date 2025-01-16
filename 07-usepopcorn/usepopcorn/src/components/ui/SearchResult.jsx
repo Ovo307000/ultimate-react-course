@@ -1,9 +1,14 @@
-export default function SearchResult ()
+import PropTypes from "prop-types";
+
+export default function SearchResult ( { countMovies } )
 {
     return <>
         <p className = "search-result">
-            {/* TODO: Add the number of results */}
-            Found <strong>X</strong> results
+            Found <strong>{ countMovies }</strong> results
         </p>
     </>;
 }
+
+SearchResult.propTypes = {
+    countMovies: PropTypes.number.isRequired
+};
