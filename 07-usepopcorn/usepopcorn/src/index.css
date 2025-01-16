@@ -234,6 +234,7 @@ body {
   font-size: 1.6rem;
   font-weight: 600;
   gap: 2.4rem;
+  white-space: nowrap;
 }
 
 .summary p {
