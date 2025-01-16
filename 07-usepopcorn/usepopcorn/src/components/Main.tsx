@@ -40,18 +40,26 @@ export default function Main(props: MainProps) {
     );
   }
 
+  function renderButtonText(isOpen: boolean) {
+    return isOpen ? "–" : "+";
+  }
+
+  function toggleOpen(setOpen: React.Dispatch<React.SetStateAction<boolean>>) {
+    return () => setOpen(prev => !prev);
+  }
+
   return (
     <main className="main">
       <Box>
-        <Button onClick={() => setIsOpen1(open => !open)}>
-          {isOpen1 ? "–" : "+"}
+        <Button onClick={toggleOpen(setIsOpen1)}>
+          {renderButtonText(isOpen1)}
         </Button>
         {isOpen1 && renderMovieList()}
       </Box>
 
       <Box>
-        <Button onClick={() => setIsOpen2(open => !open)}>
-          {isOpen2 ? "–" : "+"}
+        <Button onClick={toggleOpen(setIsOpen2)}>
+          {renderButtonText(isOpen2)}
         </Button>
 
         {isOpen2 && (
