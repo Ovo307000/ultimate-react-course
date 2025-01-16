@@ -4,8 +4,9 @@ import { WatchedMovie } from "./types/WatchedMovie";
 import { tempMovieData } from "./data/movieData";
 import { tempWatchedData } from "./data/watchedMovieData";
 
-const average = (arr: number[]): number =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+function average(arr: number[]): number {
+  return arr.reduce((acc, cur, _, arr) => acc + cur / arr.length, 0);
+}
 
 export default function App() {
   const [query, setQuery] = useState("");
