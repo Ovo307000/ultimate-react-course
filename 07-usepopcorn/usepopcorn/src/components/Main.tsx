@@ -19,8 +19,10 @@ export default function Main(props: MainProps): React.ReactNode {
   const [showWatchedMovies, setShowWatchedMovies] = useState(true);
   const [showMovieList, setShowMovieList] = useState(true);
 
-  function toggleOpen(setOpen: React.Dispatch<React.SetStateAction<boolean>>) {
-    return () => setOpen(prev => !prev);
+  function toggleShowMovies(
+    setShowMovies: React.Dispatch<React.SetStateAction<boolean>>
+  ) {
+    return () => setShowMovies(prev => !prev);
   }
 
   return (
@@ -28,7 +30,7 @@ export default function Main(props: MainProps): React.ReactNode {
       {/* Movie List */}
       <MovieListBox
         isOpen={showMovieList}
-        toggleOpen={toggleOpen(setShowMovieList)}
+        toggleOpen={toggleShowMovies(setShowMovieList)}
       >
         <MovieList movies={movies} />
       </MovieListBox>
@@ -36,7 +38,7 @@ export default function Main(props: MainProps): React.ReactNode {
       {/* Watched Movie Summary */}
       <MovieListBox
         isOpen={showWatchedMovies}
-        toggleOpen={toggleOpen(setShowWatchedMovies)}
+        toggleOpen={toggleShowMovies(setShowWatchedMovies)}
       >
         <WatchedMovieSummary
           watched={watched}
