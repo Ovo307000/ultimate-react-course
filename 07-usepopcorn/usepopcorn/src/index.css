@@ -14,6 +14,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 html {
@@ -53,7 +56,8 @@ body {
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
   max-width: 42rem;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
   width: 42rem;
 }
@@ -137,7 +141,8 @@ body {
 
 .list {
   list-style: none;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   padding: 0.8rem 0;
 }
 
@@ -379,3 +384,52 @@ EMPTY STAR
 </svg>
 
 */
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-900);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-light);
+}
+
+/* Firefox 滚动条样式 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-background-900);
+}
+
+/* 隐藏横向滚动条 */
+.box {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.list {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* 如果你想要完全隐藏所有滚动条的话，可以使用这个样式喵～ */
+.box::-webkit-scrollbar,
+.list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.box,
+.list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
