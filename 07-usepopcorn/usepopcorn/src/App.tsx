@@ -13,14 +13,10 @@ function average(arr: number[]): number {
 export default function App() {
   const [movies] = useState<Movie[]>(tempMovieData);
   const [watched] = useState<WatchedMovie[]>(tempWatchedData);
-  const [isOpen1, setIsOpen1] = useState(true);
-  const [isOpen2, setIsOpen2] = useState(true);
 
   const avgImdbRating = average(watched.map(movie => movie.imdbRating));
   const avgUserRating = average(watched.map(movie => movie.userRating));
   const avgRuntime = average(watched.map(movie => movie.runtime));
-
-  // components
 
   return (
     <>
