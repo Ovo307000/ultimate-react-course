@@ -16,8 +16,8 @@ interface MainProps {
 
 export default function Main(props: MainProps): React.ReactNode {
   const { movies, watched, avgImdbRating, avgUserRating, avgRuntime } = props;
-  const [isOpen1, setIsOpen1] = useState(true);
-  const [isOpen2, setIsOpen2] = useState(true);
+  const [showWatchedMovies, setShowWatchedMovies] = useState(true);
+  const [showMovieList, setShowMovieList] = useState(true);
 
   function toggleOpen(setOpen: React.Dispatch<React.SetStateAction<boolean>>) {
     return () => setOpen(prev => !prev);
@@ -26,12 +26,18 @@ export default function Main(props: MainProps): React.ReactNode {
   return (
     <main className="main">
       {/* Movie List */}
-      <MovieListBox isOpen={isOpen1} toggleOpen={toggleOpen(setIsOpen1)}>
+      <MovieListBox
+        isOpen={showMovieList}
+        toggleOpen={toggleOpen(setShowMovieList)}
+      >
         <MovieList movies={movies} />
       </MovieListBox>
 
       {/* Watched Movie Summary */}
-      <MovieListBox isOpen={isOpen2} toggleOpen={toggleOpen(setIsOpen2)}>
+      <MovieListBox
+        isOpen={showWatchedMovies}
+        toggleOpen={toggleOpen(setShowWatchedMovies)}
+      >
         <WatchedMovieSummary
           watched={watched}
           avgImdbRating={avgImdbRating}
