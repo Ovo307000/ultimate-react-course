@@ -10,7 +10,7 @@ function average(arr: number[]): number {
   return arr.reduce((acc, cur, _, arr) => acc + cur / arr.length, 0);
 }
 
-export default function App() {
+export default function App(): React.ReactNode {
   const [movies] = useState<Movie[]>(tempMovieData);
   const [watched] = useState<WatchedMovie[]>(tempWatchedData);
 

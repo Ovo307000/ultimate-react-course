@@ -3,7 +3,7 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-export default function Button(props: ButtonProps) {
+export default function Button(props: ButtonProps): React.ReactNode {
   const { children, onClick } = props;
 
   return (

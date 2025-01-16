@@ -4,7 +4,9 @@ interface WatchedMovieItemProps {
   watchedMovie: WatchedMovie;
 }
 
-export default function WatchedMovieItem(props: WatchedMovieItemProps) {
+export default function WatchedMovieItem(
+  props: WatchedMovieItemProps
+): React.ReactNode {
   const { watchedMovie: movie } = props;
 
   return (

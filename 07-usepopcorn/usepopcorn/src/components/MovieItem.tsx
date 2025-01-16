@@ -4,7 +4,7 @@ interface MovieItemProps {
   movie: Movie;
 }
 
-export default function MovieItem(props: MovieItemProps) {
+export default function MovieItem(props: MovieItemProps): React.ReactNode {
   const { movie } = props;
 
   return (

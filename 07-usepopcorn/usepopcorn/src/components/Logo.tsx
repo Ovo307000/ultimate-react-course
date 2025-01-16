@@ -1,4 +1,4 @@
-export default function Logo() {
+export default function Logo(): React.ReactNode {
   return (
     <div className="logo">
       <span role="img">🍿</span>

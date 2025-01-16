@@ -7,7 +7,9 @@ interface WatchedMovieSummaryProps {
   avgRuntime: number;
 }
 
-export default function WatchedMovieSummary(props: WatchedMovieSummaryProps) {
+export default function WatchedMovieSummary(
+  props: WatchedMovieSummaryProps
+): React.ReactNode {
   const { watched, avgImdbRating, avgUserRating, avgRuntime } = props;
 
   return (

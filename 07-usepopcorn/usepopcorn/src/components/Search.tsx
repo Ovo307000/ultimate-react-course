@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Search() {
+export default function Search(): React.ReactNode {
   const [query, setQuery] = useState("");
 
   function handleSearch(searchEvent: React.ChangeEvent<HTMLInputElement>) {

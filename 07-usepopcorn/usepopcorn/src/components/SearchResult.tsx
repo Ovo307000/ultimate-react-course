@@ -4,7 +4,9 @@ interface SearchResultProps {
   movies: Movie[];
 }
 
-export default function SearchResult(props: SearchResultProps) {
+export default function SearchResult(
+  props: SearchResultProps
+): React.ReactNode {
   const { movies } = props;
 
   return (

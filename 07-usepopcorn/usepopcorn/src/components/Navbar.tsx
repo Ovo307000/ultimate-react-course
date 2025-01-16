@@ -7,7 +7,7 @@ interface NavbarProps {
   movies: Movie[];
 }
 
-export default function Navbar(props: NavbarProps) {
+export default function Navbar(props: NavbarProps): React.ReactNode {
   const { movies } = props;
 
   // SearchResult

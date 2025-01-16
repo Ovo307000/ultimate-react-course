@@ -15,7 +15,7 @@ interface MainProps {
   avgRuntime: number;
 }
 
-export default function Main(props: MainProps) {
+export default function Main(props: MainProps): React.ReactNode {
   const { movies, watched, avgImdbRating, avgUserRating, avgRuntime } = props;
   const [isOpen1, setIsOpen1] = useState(true);
   const [isOpen2, setIsOpen2] = useState(true);
