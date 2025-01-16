@@ -138,7 +138,7 @@ body
     transform  : translateY(-2px);
 }
 
-.num-results
+.search-result
 {
     font-size    : 1.8rem;
     justify-self : end;
