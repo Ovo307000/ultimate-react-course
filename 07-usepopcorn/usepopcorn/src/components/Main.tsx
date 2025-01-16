@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Movie } from "../types/Movie";
 import { WatchedMovie } from "../types/WatchedMovie";
 import WatchedMovieSummary from "./WatchedMovieSummary";
+import MovieItem from "./MovieItem";
+import WatchedMovieItem from "./WatchedMovieItem";
+import Button from "./Button";
+import Box from "./Box";
 
 interface MainProps {
   movies: Movie[];
@@ -18,38 +22,23 @@ export default function Main(props: MainProps) {
 
   return (
     <main className="main">
-      <div className="box">
-        <button
-          className="btn-toggle"
-          onClick={() => setIsOpen1(open => !open)}
-        >
+      <Box>
+        <Button onClick={() => setIsOpen1(open => !open)}>
           {isOpen1 ? "–" : "+"}
-        </button>
+        </Button>
         {isOpen1 && (
           <ul className="list">
             {movies?.map(movie => (
-              <li key={movie.imdbID}>
-                <img src={movie.Poster} alt={`${movie.Title} poster`} />
-                <h3>{movie.Title}</h3>
-                <div>
-                  <p>
-                    <span>🗓</span>
-                    <span>{movie.Year}</span>
-                  </p>
-                </div>
-              </li>
+              <MovieItem key={movie.imdbID} movie={movie} />
             ))}
           </ul>
         )}
-      </div>
+      </Box>
 
-      <div className="box">
-        <button
-          className="btn-toggle"
-          onClick={() => setIsOpen2(open => !open)}
-        >
+      <Box>
+        <Button onClick={() => setIsOpen2(open => !open)}>
           {isOpen2 ? "–" : "+"}
-        </button>
+        </Button>
         {isOpen2 && (
           <>
             <WatchedMovieSummary
@@ -61,29 +50,12 @@ export default function Main(props: MainProps) {
 
             <ul className="list">
               {watched.map(movie => (
-                <li key={movie.imdbID}>
-                  <img src={movie.Poster} alt={`${movie.Title} poster`} />
-                  <h3>{movie.Title}</h3>
-                  <div>
-                    <p>
-                      <span>⭐️</span>
-                      <span>{movie.imdbRating}</span>
-                    </p>
-                    <p>
-                      <span>🌟</span>
-                      <span>{movie.userRating}</span>
-                    </p>
-                    <p>
-                      <span>⏳</span>
-                      <span>{movie.runtime} min</span>
-                    </p>
-                  </div>
-                </li>
+                <WatchedMovieItem key={movie.imdbID} watchedMovie={movie} />
               ))}
             </ul>
           </>
         )}
-      </div>
+      </Box>
     </main>
   );
 }
