@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { Movie } from "../types/Movie";
 
-export default function Navbar({ movies }: { movies: Movie[] }) {
+interface NavbarProps {
+  movies: Movie[];
+}
+
+export default function Navbar(props: NavbarProps) {
+  const { movies } = props;
   const [query, setQuery] = useState("");
 
   return (
