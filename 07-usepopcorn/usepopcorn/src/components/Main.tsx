@@ -20,25 +20,40 @@ export default function Main(props: MainProps) {
   const [isOpen1, setIsOpen1] = useState(true);
   const [isOpen2, setIsOpen2] = useState(true);
 
+  function renderMovieList() {
+    return (
+      <ul className="list">
+        {movies?.map(movie => (
+          <MovieItem key={movie.imdbID} movie={movie} />
+        ))}
+      </ul>
+    );
+  }
+
+  function renderWatchedMovieList() {
+    return (
+      <ul className="list">
+        {watched?.map(movie => (
+          <WatchedMovieItem key={movie.imdbID} watchedMovie={movie} />
+        ))}
+      </ul>
+    );
+  }
+
   return (
     <main className="main">
       <Box>
         <Button onClick={() => setIsOpen1(open => !open)}>
           {isOpen1 ? "–" : "+"}
         </Button>
-        {isOpen1 && (
-          <ul className="list">
-            {movies?.map(movie => (
-              <MovieItem key={movie.imdbID} movie={movie} />
-            ))}
-          </ul>
-        )}
+        {isOpen1 && renderMovieList()}
       </Box>
 
       <Box>
         <Button onClick={() => setIsOpen2(open => !open)}>
           {isOpen2 ? "–" : "+"}
         </Button>
+
         {isOpen2 && (
           <>
             <WatchedMovieSummary
@@ -48,11 +63,7 @@ export default function Main(props: MainProps) {
               avgRuntime={avgRuntime}
             />
 
-            <ul className="list">
-              {watched.map(movie => (
-                <WatchedMovieItem key={movie.imdbID} watchedMovie={movie} />
-              ))}
-            </ul>
+            {renderWatchedMovieList()}
           </>
         )}
       </Box>
