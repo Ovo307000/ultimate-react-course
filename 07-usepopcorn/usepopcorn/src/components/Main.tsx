@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Movie } from "../types/Movie";
 import { WatchedMovie } from "../types/WatchedMovie";
+import WatchedMovieSummary from "./WatchedMovieSummary";
 
 interface MainProps {
   movies: Movie[];
@@ -51,27 +52,12 @@ export default function Main(props: MainProps) {
         </button>
         {isOpen2 && (
           <>
-            <div className="summary">
-              <div>
-                <h2>Movies you watched</h2>
-                <p>
-                  <span>#️⃣</span>
-                  <span>{watched.length} movies</span>
-                </p>
-                <p>
-                  <span>⭐️</span>
-                  <span>{avgImdbRating}</span>
-                </p>
-                <p>
-                  <span>🌟</span>
-                  <span>{avgUserRating}</span>
-                </p>
-                <p>
-                  <span>⏳</span>
-                  <span>{avgRuntime} min</span>
-                </p>
-              </div>
-            </div>
+            <WatchedMovieSummary
+              watched={watched}
+              avgImdbRating={avgImdbRating}
+              avgUserRating={avgUserRating}
+              avgRuntime={avgRuntime}
+            />
 
             <ul className="list">
               {watched.map(movie => (
