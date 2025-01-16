@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-
+import MovieListBox from "./MovieListBox";
 /**
  *
  * @param { movies } movies array of movies
@@ -25,23 +25,6 @@ export default function Main ( {
                                    avgRuntime
                                } )
 {
-    function renderMovies ( movies )
-    {
-        return movies.map ( movie => <li key = { movie.imdbID }>
-            <img
-                src = { movie.Poster }
-                alt = { `${ movie.Title } poster` }
-            />
-            <h3>{ movie.Title }</h3>
-            <div>
-                <p>
-                    <span>🗓</span>
-                    <span>{ movie.Year }</span>
-                </p>
-            </div>
-        </li> );
-    }
-
     function renderWatchedMovies ( movies )
     {
         return movies.map ( movie => <li key = { movie.imdbID }>
@@ -76,17 +59,11 @@ export default function Main ( {
 
     return <>
         <main className = "main">
-            <div className = "box">
-                <button
-                    className = "btn-toggle"
-                    onClick = { () => setIsWatchedMoviesOpen ( open => !open ) }
-                >
-                    { isWatchedMoviesOpen ? "–" : "+" }
-                </button>
-                { isWatchedMoviesOpen && <ul className = "list">
-                    { renderMovies ( movies ) }
-                </ul> }
-            </div>
+            <MovieListBox 
+                movies = { movies }
+                isWatchedMoviesOpen = { isWatchedMoviesOpen }
+                setIsWatchedMoviesOpen = { setIsWatchedMoviesOpen }
+            />
 
             <div className = "box">
                 <button
