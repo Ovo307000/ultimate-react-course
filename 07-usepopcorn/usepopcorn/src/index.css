@@ -59,14 +59,14 @@ body
 {
     background-color : var(--color-background-500);
     border-radius    : 0.9rem;
+    height           : calc(100vh - 7.2rem - 3 * 2.4rem);
     max-width        : 42rem;
     overflow-x       : hidden;
     overflow-y       : overlay;
     position         : relative;
-    width            : 42rem;
-    height           : calc(100vh - 7.2rem - 3 * 2.4rem);
-
     scrollbar-width  : none;
+
+    width            : 42rem;
 }
 
 .box::-webkit-scrollbar
