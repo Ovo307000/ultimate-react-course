@@ -4,61 +4,98 @@ import PropTypes from "prop-types";
  *
  * @param { movies } movies array of movies
  * @param { watched } watched array of watched movies
- * @param { isOpen1 } isOpen1 boolean to open/close the first box
- * @param { setIsOpen1 } setIsOpen1 function to set the state of isOpen1
- * @param { isOpen2 } isOpen2 boolean to open/close the second box
- * @param { setIsOpen2 } setIsOpen2 function to set the state of isOpen2
+ * @param { isWatchedMoviesOpen } isWatchedMoviesOpen boolean to open/close the first box
+ * @param { setIsWatchedMoviesOpen } setIsWatchedMoviesOpen function to set the state of isWatchedMoviesOpen
+ * @param { isMovieDetailsOpen } isMovieDetailsOpen boolean to open/close the second box
+ * @param { setIsMovieDetailsOpen } setIsMovieDetailsOpen function to set the state of isMovieDetailsOpen
  * @param { avgImdbRating } avgImdbRating average imdb rating of watched movies
  * @param { avgUserRating } avgUserRating average user rating of watched movies
  * @param { avgRuntime } avgRuntime average runtime of watched movies
- * @returns { JSX.Element } JSX element
+ * @returns { JSX.Element } A React component, for showing the main content of the app
  */
 export default function Main ( {
                                    movies,
                                    watched,
-                                   isOpen1,
-                                   setIsOpen1,
-                                   isOpen2,
-                                   setIsOpen2,
+                                   isWatchedMoviesOpen,
+                                   setIsWatchedMoviesOpen,
+                                   isMovieDetailsOpen,
+                                   setIsMovieDetailsOpen,
                                    avgImdbRating,
                                    avgUserRating,
                                    avgRuntime
                                } )
 {
+    function renderMovies ( movies )
+    {
+        return movies.map ( movie => <li key = { movie.imdbID }>
+            <img
+                src = { movie.Poster }
+                alt = { `${ movie.Title } poster` }
+            />
+            <h3>{ movie.Title }</h3>
+            <div>
+                <p>
+                    <span>🗓</span>
+                    <span>{ movie.Year }</span>
+                </p>
+            </div>
+        </li> );
+    }
+
+    function renderWatchedMovies ( movies )
+    {
+        return movies.map ( movie => <li key = { movie.imdbID }>
+            <img
+                src = { movie.Poster }
+                alt = { `${ movie.Title } poster` }
+            />
+            <h3>{ movie.Title }</h3>
+            
+            <div>
+                <p>
+                    <span>⭐️</span>
+                    <span>{ movie.imdbRating }</span>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <span>🌟</span>
+                    <span>{ movie.userRating }</span>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <span>⏳</span>
+                    <span>{ movie.runtime } min</span>
+                </p>
+            </div>
+        </li> );
+    }
+
     return <>
         <main className = "main">
             <div className = "box">
                 <button
                     className = "btn-toggle"
-                    onClick = { () => setIsOpen1 ( open => !open ) }
+                    onClick = { () => setIsWatchedMoviesOpen ( open => !open ) }
                 >
-                    { isOpen1 ? "–" : "+" }
+                    { isWatchedMoviesOpen ? "–" : "+" }
                 </button>
-                { isOpen1 && <ul className = "list">
-                    { movies?.map ( movie => <li key = { movie.imdbID }>
-                        <img
-                            src = { movie.Poster }
-                            alt = { `${ movie.Title } poster` }
-                        />
-                        <h3>{ movie.Title }</h3>
-                        <div>
-                            <p>
-                                <span>🗓</span>
-                                <span>{ movie.Year }</span>
-                            </p>
-                        </div>
-                    </li> ) }
+                { isWatchedMoviesOpen && <ul className = "list">
+                    { renderMovies ( movies ) }
                 </ul> }
             </div>
 
             <div className = "box">
                 <button
                     className = "btn-toggle"
-                    onClick = { () => setIsOpen2 ( open => !open ) }
+                    onClick = { () => setIsMovieDetailsOpen ( open => !open ) }
                 >
-                    { isOpen2 ? "–" : "+" }
+                    { isMovieDetailsOpen ? "–" : "+" }
                 </button>
-                { isOpen2 && <>
+                { isMovieDetailsOpen && <>
                     <div className = "summary">
                         <h2>Movies you watched</h2>
                         <div>
@@ -81,28 +118,9 @@ export default function Main ( {
                         </div>
                     </div>
 
+                    {/* Watched movies */}
                     <ul className = "list">
-                        { watched.map ( movie => <li key = { movie.imdbID }>
-                            <img
-                                src = { movie.Poster }
-                                alt = { `${ movie.Title } poster` }
-                            />
-                            <h3>{ movie.Title }</h3>
-                            <div>
-                                <p>
-                                    <span>⭐️</span>
-                                    <span>{ movie.imdbRating }</span>
-                                </p>
-                                <p>
-                                    <span>🌟</span>
-                                    <span>{ movie.userRating }</span>
-                                </p>
-                                <p>
-                                    <span>⏳</span>
-                                    <span>{ movie.runtime } min</span>
-                                </p>
-                            </div>
-                        </li> ) }
+                        { renderWatchedMovies ( watched ) }
                     </ul>
                 </> }
             </div>
@@ -111,13 +129,13 @@ export default function Main ( {
 }
 
 Main.propTypes = {
-    movies       : PropTypes.array.isRequired,
-    watched      : PropTypes.array.isRequired,
-    isOpen1      : PropTypes.bool.isRequired,
-    setIsOpen1   : PropTypes.func.isRequired,
-    isOpen2      : PropTypes.bool.isRequired,
-    setIsOpen2   : PropTypes.func.isRequired,
+    movies: PropTypes.array.isRequired,
+    watched: PropTypes.array.isRequired,
+    isWatchedMoviesOpen: PropTypes.bool.isRequired,
+    setIsWatchedMoviesOpen: PropTypes.func.isRequired,
+    isMovieDetailsOpen: PropTypes.bool.isRequired,
+    setIsMovieDetailsOpen: PropTypes.func.isRequired,
     avgImdbRating: PropTypes.number.isRequired,
     avgUserRating: PropTypes.number.isRequired,
-    avgRuntime   : PropTypes.number.isRequired
+    avgRuntime: PropTypes.number.isRequired
 };

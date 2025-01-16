@@ -5,12 +5,12 @@ import NavBar from "./components/NavBar";
 import Main from "./components/Main";
 
 /**
- * @param { array } array array of numbers
+ * @param { number[] } data array of numbers
  * @returns { number } average of the array
  */
-function average ( array )
+function calculateAverage ( data )
 {
-    return array.reduce ( ( acc, cur, i, arr ) => acc + cur / arr.length, 0 );
+    return data.reduce ( ( acc, cur, i, arr ) => acc + cur / arr.length, 0 );
 }
 
 /**
@@ -18,14 +18,14 @@ function average ( array )
  */
 export default function App ()
 {
-    const [ movies, setMovies ] = useState ( tempMovieData );
-    const [ watched, setWatched ] = useState ( tempWatchedData );
-    const [ isOpen1, setIsOpen1 ] = useState ( true );
-    const [ isOpen2, setIsOpen2 ] = useState ( true );
+    const [ movies ] = useState ( tempMovieData );
+    const [ watched ] = useState ( tempWatchedData );
+    const [ showMovieDetails, setShowMovieDetails ] = useState ( true );
+    const [ showWatchedMovieDetails, setShowWatchedMovieDetails ] = useState ( true );
 
-    const avgImdbRating = average ( watched.map ( movie => movie.imdbRating ) );
-    const avgUserRating = average ( watched.map ( movie => movie.userRating ) );
-    const avgRuntime = average ( watched.map ( movie => movie.runtime ) );
+    const avgImdbRating = calculateAverage ( watched.map ( movie => movie.imdbRating ) );
+    const avgUserRating = calculateAverage ( watched.map ( movie => movie.userRating ) );
+    const avgRuntime = calculateAverage ( watched.map ( movie => movie.runtime ) );
 
     return <>
         <NavBar movies = { movies } />
@@ -33,10 +33,10 @@ export default function App ()
         <Main
             movies = { movies }
             watched = { watched }
-            isOpen1 = { isOpen1 }
-            setIsOpen1 = { setIsOpen1 }
-            isOpen2 = { isOpen2 }
-            setIsOpen2 = { setIsOpen2 }
+            isMovieDetailsOpen = { showMovieDetails }
+            setIsMovieDetailsOpen = { setShowMovieDetails }
+            isWatchedMoviesOpen = { showWatchedMovieDetails }
+            setIsWatchedMoviesOpen = { setShowWatchedMovieDetails }
             avgImdbRating = { avgImdbRating }
             avgUserRating = { avgUserRating }
             avgRuntime = { avgRuntime }
