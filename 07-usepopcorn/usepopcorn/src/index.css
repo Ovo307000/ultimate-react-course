@@ -60,9 +60,18 @@ body
     background-color : var(--color-background-500);
     border-radius    : 0.9rem;
     max-width        : 42rem;
-    overflow         : scroll;
+    overflow-x       : hidden;
+    overflow-y       : overlay;
     position         : relative;
     width            : 42rem;
+    height           : calc(100vh - 7.2rem - 3 * 2.4rem);
+
+    scrollbar-width  : none;
+}
+
+.box::-webkit-scrollbar
+{
+    display : none;
 }
 
 .loader
