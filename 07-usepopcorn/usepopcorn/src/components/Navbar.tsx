@@ -1,6 +1,6 @@
 import { Movie } from "../types/Movie";
 import Logo from "./Logo";
-import Search from "./Search";
+import Search from "./ui/Search";
 import SearchResult from "./SearchResult";
 
 interface NavbarProps {
