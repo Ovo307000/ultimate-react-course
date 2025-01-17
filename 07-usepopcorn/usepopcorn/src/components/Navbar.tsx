@@ -16,7 +16,7 @@ export default function Navbar(props: NavbarProps): React.ReactNode {
     <nav className="nav-bar">
       <Logo />
       <Search />
-      <SearchResult movies={movies} />
+      <SearchResult>Found {movies.length} results</SearchResult>
     </nav>
   );
 }
