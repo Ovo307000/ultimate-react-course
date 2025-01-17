@@ -22,14 +22,14 @@ export default function App(): React.ReactNode {
       <Navbar movies={movies} />
       <Main>
         <MovieListBox
-          isOpen={showMovieList}
+          show={showMovieList}
           toggleOpen={toggleShowMovies(setShowMovieList)}
         >
           <MovieList movies={movies} />
         </MovieListBox>
 
         <MovieListBox
-          isOpen={showWatchedMovies}
+          show={showWatchedMovies}
           toggleOpen={toggleShowMovies(setShowWatchedMovies)}
         >
           <WatchedMovieSummary watchedMovies={watchedMovies} />
