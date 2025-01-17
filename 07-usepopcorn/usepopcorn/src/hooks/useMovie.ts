@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Movie } from "../types/Movie";
 import { WatchedMovie } from "../types/WatchedMovie";
 import { tempMovieData } from "../data/movieData";
@@ -12,7 +12,7 @@ export function useMovie() {
 
   function toggleShowMovies(
     setShowMovies: React.Dispatch<React.SetStateAction<boolean>>
-  ) {
+  ): () => void {
     return () => setShowMovies(showMovies => !showMovies);
   }
 
