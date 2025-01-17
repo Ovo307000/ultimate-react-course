@@ -1,6 +1,5 @@
 import Box from "./Box";
 import Button from "./Button";
-
 interface MovieListBoxProps {
   children: React.ReactNode;
   isOpen: boolean;
@@ -10,7 +9,7 @@ interface MovieListBoxProps {
 export default function MovieListBox(
   props: MovieListBoxProps
 ): React.ReactNode {
-  const { children, isOpen, toggleOpen: handleToggleOpen } = props;
+  const { children, isOpen, toggleOpen } = props;
 
   function renderButtonText(isOpen: boolean) {
     return isOpen ? "–" : "+";
@@ -18,7 +17,7 @@ export default function MovieListBox(
 
   return (
     <Box>
-      <Button onClick={handleToggleOpen}>{renderButtonText(isOpen)}</Button>
+      <Button onClick={toggleOpen}>{renderButtonText(isOpen)}</Button>
       {isOpen && children}
     </Box>
   );
