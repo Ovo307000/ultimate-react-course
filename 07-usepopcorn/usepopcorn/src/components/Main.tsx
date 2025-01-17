@@ -8,14 +8,11 @@ import MovieListBox from "./MovieListBox";
 
 interface MainProps {
   movies: Movie[];
-  watched: WatchedMovie[];
-  avgImdbRating: number;
-  avgUserRating: number;
-  avgRuntime: number;
+  watchedMovies: WatchedMovie[];
 }
 
 export default function Main(props: MainProps): React.ReactNode {
-  const { movies, watched, avgImdbRating, avgUserRating, avgRuntime } = props;
+  const { movies, watchedMovies } = props;
   const [showWatchedMovies, setShowWatchedMovies] = useState(true);
   const [showMovieList, setShowMovieList] = useState(true);
 
@@ -40,15 +37,10 @@ export default function Main(props: MainProps): React.ReactNode {
         isOpen={showWatchedMovies}
         toggleOpen={toggleShowMovies(setShowWatchedMovies)}
       >
-        <WatchedMovieSummary
-          watched={watched}
-          avgImdbRating={avgImdbRating}
-          avgUserRating={avgUserRating}
-          avgRuntime={avgRuntime}
-        />
+        <WatchedMovieSummary watchedMovies={watchedMovies} />
 
         {/* Watched Movie List */}
-        <WatchedMovieList watchedMovies={watched} />
+        <WatchedMovieList watchedMovies={watchedMovies} />
       </MovieListBox>
     </main>
   );

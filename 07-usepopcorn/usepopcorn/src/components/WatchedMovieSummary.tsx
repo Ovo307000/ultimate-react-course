@@ -1,16 +1,17 @@
 import { WatchedMovie } from "../types/WatchedMovie";
 
 interface WatchedMovieSummaryProps {
-  watched: WatchedMovie[];
-  avgImdbRating: number;
-  avgUserRating: number;
-  avgRuntime: number;
+  watchedMovies: WatchedMovie[];
 }
 
 export default function WatchedMovieSummary(
   props: WatchedMovieSummaryProps
 ): React.ReactNode {
-  const { watched, avgImdbRating, avgUserRating, avgRuntime } = props;
+  const { watchedMovies } = props;
+
+  function average(arr: number[]): number {
+    return arr.reduce((acc, cur, _, arr) => acc + cur / arr.length, 0);
+  }
 
   return (
     <div className="summary">
@@ -18,19 +19,19 @@ export default function WatchedMovieSummary(
       <div>
         <p>
           <span>#️⃣</span>
-          <span>{watched.length} movies</span>
+          <span>{watchedMovies.length} movies</span>
         </p>
         <p>
           <span>⭐️</span>
-          <span>{avgImdbRating}</span>
+          <span>{average(watchedMovies.map(movie => movie.imdbRating))}</span>
         </p>
         <p>
           <span>🌟</span>
-          <span>{avgUserRating}</span>
+          <span>{average(watchedMovies.map(movie => movie.userRating))}</span>
         </p>
         <p>
           <span>⏳</span>
-          <span>{avgRuntime} min</span>
+          <span>{average(watchedMovies.map(movie => movie.runtime))} min</span>
         </p>
       </div>
     </div>
